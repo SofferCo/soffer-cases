@@ -48,6 +48,7 @@ body .foot { display: none; }
 /* fix awkward hero line breaks (all pages): balance the title, and widen the
    tagline measure (export ships it at a cramped 24ch) so it breaks cleanly */
 body h1 { text-wrap: balance; }
+body .big, body .statement { text-wrap: balance; }
 body .sub { max-width: 44ch; text-wrap: pretty; }
 
 /* ---- Two-column project nav (shared by overlay + footer section) ------- */
