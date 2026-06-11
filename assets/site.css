@@ -1,0 +1,147 @@
+/* ===========================================================================
+   Studio Soffer — shared site chrome
+   · Hamburger button → full-screen project menu (overlay)
+   · Same project menu repeated as the last section of every page (footer nav)
+   · Big bold names on the right, a hover-preview cover image on the left
+   Monochrome-warm; inherits host page tokens (--ink/--bg/--mute/--line/--soft/--f).
+   All classes ss- prefixed. Tuned for the light theme.
+   =========================================================================== */
+.ss-burger, .ss-menu, .ss-foot-nav {
+  --ss-ink:  var(--ink,  #16140f);
+  --ss-bg:   var(--bg,   #ffffff);
+  --ss-mute: var(--mute, #9b958c);
+  --ss-line: var(--line, #ececec);
+  --ss-soft: var(--soft, #f4f4f2);
+  font-family: var(--f, "Overused Grotesk", system-ui, sans-serif);
+}
+
+/* reserve the scrollbar gutter always, so the fixed button lands in the SAME
+   spot whether the page scrolls (scrollbar shown) or the overlay is open
+   (overflow hidden) — kills the horizontal shift between the arrow and the × */
+html { scrollbar-gutter: stable; }
+
+/* ---- Menu button (fixed, top-right) ---------------------- */
+.ss-burger {
+  position: fixed; top: 14px; right: 20px; z-index: 2147483600;
+  display: grid; place-items: center;
+  width: 52px; height: 52px; box-sizing: border-box; color: var(--ss-ink);
+  background: none; border: 0; cursor: pointer;
+  transition: opacity .4s ease, transform .4s cubic-bezier(.22,1,.36,1);
+}
+.ss-burger:active { transform: scale(.92); }
+.ss-burger svg {
+  width: 46px; height: 46px; display: block;
+  transition: transform .4s cubic-bezier(.22,1,.36,1);
+}
+.ss-burger:hover .ss-ic-arrow { transform: translate(2px, -2px); }
+/* when the overlay is open, the same fixed button becomes the close (×) — same spot & size */
+.ss-burger .ss-ic-close { display: none; }
+html.ss-nav-open .ss-burger .ss-ic-arrow { display: none; }
+html.ss-nav-open .ss-burger .ss-ic-close { display: block; }
+
+/* give the case-study top bar room so its right-aligned meta clears the button */
+body .topbar { padding-right: 78px; }
+
+/* hide the export build-note footer line */
+body .foot { display: none; }
+
+/* fix awkward hero line breaks (all pages): balance the title, and widen the
+   tagline measure (export ships it at a cramped 24ch) so it breaks cleanly */
+body h1 { text-wrap: balance; }
+body .sub { max-width: 44ch; text-wrap: pretty; }
+
+/* ---- Two-column project nav (shared by overlay + footer section) ------- */
+.ss-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* divided in half */
+  gap: clamp(20px, 4vw, 56px);
+  align-items: end;                 /* content sits at the bottom */
+  width: 100%;
+}
+.ss-nav-cover {
+  position: relative; overflow: hidden;
+  width: clamp(210px, 24vw, 340px); /* small */
+  aspect-ratio: 16 / 9;             /* matches the video thumbnails */
+  justify-self: start;              /* hugged to the left */
+  align-self: end;                  /* hugged to the bottom */
+  background: var(--ss-soft); border-radius: 2px;
+}
+.ss-cover-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  opacity: 0; transform: scale(1.05);
+  transition: opacity .55s ease, transform 1.3s cubic-bezier(.22,1,.36,1);
+}
+.ss-cover-img.is-active { opacity: 1; transform: scale(1); }
+
+.ss-nav-list { display: flex; flex-direction: column; }
+.ss-row {
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 18px;
+  padding: clamp(9px, 1.2vw, 18px) 2px;
+  border-bottom: 1px solid var(--ss-line);
+  text-decoration: none; color: var(--ss-ink);
+}
+.ss-row:first-child { border-top: 1px solid var(--ss-line); }
+.ss-row-title {
+  font-weight: 500; letter-spacing: -.028em; line-height: 1.0;
+  font-size: clamp(36px, 5.4vw, 76px); color: var(--ss-ink);
+  transition: transform .5s cubic-bezier(.22,1,.36,1), opacity .3s ease;
+}
+.ss-row-plus {
+  flex: none; width: 27px; height: 27px; border-radius: 50%;
+  border: 1px solid var(--ss-mute); color: var(--ss-mute);
+  display: grid; place-items: center; font-size: 16px; line-height: 1;
+  transition: background .3s ease, color .3s ease, border-color .3s ease, transform .45s cubic-bezier(.22,1,.36,1);
+}
+.ss-row:hover .ss-row-title { transform: translateX(16px); }
+.ss-row:hover .ss-row-plus  { background: var(--ss-ink); color: var(--ss-bg); border-color: var(--ss-ink); transform: rotate(90deg); }
+/* spotlight: hovering the list dims the rest */
+.ss-nav-list:hover .ss-row .ss-row-title       { opacity: .32; }
+.ss-nav-list:hover .ss-row:hover .ss-row-title { opacity: 1; }
+/* current page */
+.ss-row.is-current .ss-row-title { color: var(--ss-mute); }
+
+/* ---- Overlay (hamburger → full screen) -------------------------------- */
+.ss-menu {
+  position: fixed; inset: 0; z-index: 2147483500;
+  display: flex; flex-direction: column;
+  padding: 20px clamp(20px, 6vw, 80px) clamp(30px, 6vh, 72px);
+  background: var(--ss-bg);
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity .45s ease, transform .6s cubic-bezier(.22,1,.36,1), visibility 0s linear .45s;
+}
+.ss-menu.ss-open { opacity: 1; visibility: visible; transform: none;
+  transition: opacity .45s ease, transform .6s cubic-bezier(.22,1,.36,1); }
+.ss-menu-head {
+  flex: none; display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: clamp(20px, 4vh, 46px);
+}
+.ss-wordmark { font-weight: 600; font-size: 15px; letter-spacing: -.01em; color: var(--ss-ink); }
+.ss-close {
+  font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--ss-mute);
+  background: none; border: 0; cursor: pointer; padding: 8px 2px; transition: color .2s ease;
+}
+.ss-close:hover { color: var(--ss-ink); }
+.ss-menu .ss-nav { flex: 1 1 auto; align-content: center; }
+
+/* ---- Footer section (last section of every page) ---------------------- */
+.ss-foot-nav {
+  background: var(--ss-bg); border-top: 1px solid var(--ss-line);
+  padding: clamp(50px, 9vh, 130px) clamp(20px, 6vw, 80px);
+}
+.ss-eyebrow {
+  font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--ss-mute);
+  margin: 0 0 clamp(24px, 4vh, 54px);
+}
+
+/* ---- Responsive -------------------------------------------------------- */
+@media (max-width: 760px) {
+  .ss-nav { grid-template-columns: 1fr; gap: 22px; align-items: start; }
+  .ss-nav-cover { width: min(64%, 280px); aspect-ratio: 16 / 9; }
+  .ss-row-title { font-size: clamp(30px, 8.5vw, 52px); }
+  .ss-row:hover .ss-row-title { transform: translateX(8px); }
+  body .topbar { padding-right: 64px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ss-menu, .ss-cover-img, .ss-row-title, .ss-row-plus, .ss-burger, .ss-burger span { transition: none !important; }
+}
