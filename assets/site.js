@@ -41,8 +41,9 @@
 
   /* ---- 2. Manifest (single source of truth) ------------------------------ */
   var PROJECTS = [
-    { key: "faireez",   title: "Faireez × Flow", file: "faireez.html",   cover: "covers/faireez-small.png"   },
-    { key: "trendmind", title: "TrendMind.ai",   file: "trendmind.html", cover: "covers/trendmind-small.png" },
+    { key: "faireez",     title: "Faireez × Flow",       file: "faireez.html",             cover: "covers/faireez-small.png"   },
+    { key: "faireez-mkt", title: "Faireez · Marketplace", file: "faireez-marketplace.html", cover: "covers/faireez-small.png"   },
+    { key: "trendmind",   title: "TrendMind.ai",         file: "trendmind.html",           cover: "covers/trendmind-small.png" },
     { key: "icx-focus", title: "ICX Focus",      file: "icx-focus.html", cover: "covers/icx-focus-small.png" },
   ];
   var here = (location.pathname.split("/").pop() || "index.html").toLowerCase();
