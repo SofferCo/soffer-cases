@@ -52,7 +52,7 @@ body .big, body .statement { text-wrap: balance; }
 body .sub { max-width: 44ch; text-wrap: pretty; }
 
 /* some case studies oversize their image/phone captions — pin them to the small gray .cap look */
-body .phonecap { font-size: 12px !important; color: var(--mute) !important; }
+body .phonecap { font-size: 12px !important; color: var(--mute) !important; max-width: none !important; }
 
 /* credit/reference lines: balance the wrap and keep the link phrase from splitting */
 body .credit { text-wrap: pretty; }
