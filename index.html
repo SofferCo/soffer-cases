@@ -20,8 +20,9 @@
         font-family: var(--f, "Overused Grotesk", system-ui, sans-serif); color: var(--ui, #000); }
   #ui .brand { position: absolute; top: var(--m); left: var(--m); pointer-events: auto; }
   #ui .brand .mark { font-size: clamp(20px, 1.5vw, 29px); font-weight: 700; letter-spacing: -.015em; text-transform: lowercase; }
-  /* left-side hero statement — Figma: 46.4px / 63px, weight 459, 1032px wide, top ~497/1080 */
-  #ui .hero { position: absolute; left: var(--m); top: 42%;
+  /* left-side hero statement — bottom-anchored to the same --m margin as the brand/arrow,
+     so the last line sits one margin off the bottom (balanced) instead of overflowing. */
+  #ui .hero { position: absolute; left: var(--m); bottom: var(--m);
               max-width: min(54vw, 1032px); pointer-events: none; }
   #ui .hero .eyebrow { margin: 0 0 28px; font-size: clamp(14px, .95vw, 17px); letter-spacing: .01em; color: var(--ui-dim, #9b958c); }
   #ui .hero p { margin: 0 0 .55em; font-size: clamp(22px, min(2.42vw, 4.7vh), 47px); line-height: 1.36;
@@ -150,6 +151,7 @@
   const tplX = new Float32Array(RING_SEG + 1);
   const tplZ = new Float32Array(RING_SEG + 1);
   let CUSTOM_PATH = null;
+  let ARC_PATH = null;   // named "ARC" shape, loaded from assets/arc.svg
 
   function normalizeTpl() {
     let minx = 1e9, maxx = -1e9, minz = 1e9, maxz = -1e9;
@@ -211,6 +213,7 @@
       normalizeTpl();
     } else if (name === "triangle") { resampleClosed(poly(3, 1)); }
     else if (name === "star") { resampleClosed(poly(5, 0.45)); }
+    else if (name === "arc" && ARC_PATH) { sampleSVGPath(ARC_PATH); }
     else if (name === "custom" && CUSTOM_PATH) { sampleSVGPath(CUSTOM_PATH); }
     else { // circle (default / fallback)
       for (let k = 0; k <= RING_SEG; k++) { const a = (k / RING_SEG) * Math.PI * 2; tplX[k] = Math.cos(a); tplZ[k] = Math.sin(a); }
@@ -221,6 +224,12 @@
   fetch("assets/shape.svg").then(r => r.ok ? r.text() : Promise.reject()).then(txt => {
     const m = txt.match(/<path[^>]*\sd="([^"]+)"/i);
     if (m) { CUSTOM_PATH = m[1]; if (CONFIG.SHAPE === "custom") { buildTemplate("custom"); rebuildSpokes(); } }
+  }).catch(() => {});
+
+  // named "ARC" shape — drop a single-path arc.svg next to this file
+  fetch("assets/arc.svg").then(r => r.ok ? r.text() : Promise.reject()).then(txt => {
+    const m = txt.match(/<path[^>]*\sd="([^"]+)"/i);
+    if (m) { ARC_PATH = m[1]; if (CONFIG.SHAPE === "arc") { buildTemplate("arc"); rebuildSpokes(); } }
   }).catch(() => {});
 
   // ---- spokes (rebuilt when shape / counts / geometry change) ---------------
@@ -468,7 +477,7 @@
     { k: "FALLOFF",     label: "Throat width",      min: 0.5,  max: 8,   step: 0.1, rebuild: true },
     { k: "R_THROAT",    label: "Hole size",         min: 0.1,  max: 4,   step: 0.05, rebuild: true },
     { k: "R_MAX",       label: "Outer radius",      min: 5,    max: 40,  step: 0.5, rebuild: true },
-    { k: "SHAPE",       label: "Tunnel shape",      type: "select", options: [["circle","Circle"],["squircle","Squircle"],["triangle","Triangle"],["star","Star"],["custom","Custom SVG"]] }
+    { k: "SHAPE",       label: "Tunnel shape",      type: "select", options: [["circle","Circle"],["squircle","Squircle"],["triangle","Triangle"],["star","Star"],["arc","ARC"],["custom","Custom SVG"]] }
   ];
   const fmt = (v, step) => step >= 1 ? String(v | 0) : Number(v).toFixed(step < 0.01 ? 3 : 2);
   const rgbToHex = (s) => "#" + s.split(",").map(n => (+n).toString(16).padStart(2, "0")).join("");
