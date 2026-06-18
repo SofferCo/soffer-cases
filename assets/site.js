@@ -40,17 +40,20 @@
   loadLenis();
 
   /* ---- 2. Manifest (single source of truth) ------------------------------ */
+  /* href = clean URL (GitHub Pages serves /faireez from faireez.html); slug = the
+     page identity, matched against the current path with or without .html */
   var PROJECTS = [
-    { key: "home",        title: "Home",                 file: "index.html",               cover: "covers/home.jpg"            },
-    { key: "faireez",     title: "Faireez × Flow",       file: "faireez.html",             cover: "covers/faireez-small.png"   },
-    { key: "faireez-mkt", title: "Faireez · Marketplace", file: "faireez-marketplace.html", cover: "covers/faireez-small.png"   },
-    { key: "trendmind",   title: "TrendMind.ai",         file: "trendmind.html",           cover: "covers/trendmind-small.png" },
-    { key: "icx-focus", title: "ICX Focus",      file: "icx-focus.html", cover: "covers/icx-focus-small.png" },
+    { key: "home",        title: "Home",                  slug: "index",               href: "/",                   cover: "covers/home.jpg"            },
+    { key: "faireez",     title: "Faireez × Flow",        slug: "faireez",             href: "faireez",             cover: "covers/faireez-small.png"   },
+    { key: "faireez-mkt", title: "Faireez · Marketplace", slug: "faireez-marketplace", href: "faireez-marketplace", cover: "covers/faireez-small.png"   },
+    { key: "trendmind",   title: "TrendMind.ai",          slug: "trendmind",           href: "trendmind",           cover: "covers/trendmind-small.png" },
+    { key: "icx-focus",   title: "ICX Focus",             slug: "icx-focus",           href: "icx-focus",           cover: "covers/icx-focus-small.png"  },
   ];
-  var here = (location.pathname.split("/").pop() || "index.html").toLowerCase();
-  var current = PROJECTS.filter(function (p) { return p.file.toLowerCase() === here; })[0] || PROJECTS[0];
+  // current page slug — works for / and /index.html (→ "index") and /faireez and /faireez.html
+  var here = (location.pathname.split("/").pop() || "index").replace(/\.html$/i, "").toLowerCase() || "index";
+  var current = PROJECTS.filter(function (p) { return p.slug === here; })[0] || PROJECTS[0];
   var currentKey = current.key;
-  if (here === "index.html") { document.documentElement.classList.add("ss-home"); }  // entrance/home page
+  if (here === "index") { document.documentElement.classList.add("ss-home"); }  // entrance/home page
 
   /* ---- 3. Build one project nav (cover + list) with hover image swap ----- */
   function setCover(cover, key) {
@@ -78,8 +81,8 @@
     list.className = "ss-nav-list";
     PROJECTS.forEach(function (p) {
       var row = document.createElement("a");
-      row.className = "ss-row" + (p.file.toLowerCase() === here ? " is-current" : "");
-      row.href = p.file; row.setAttribute("data-key", p.key);
+      row.className = "ss-row" + (p.slug === here ? " is-current" : "");
+      row.href = p.href; row.setAttribute("data-key", p.key);
       row.innerHTML = '<span class="ss-row-title">' + p.title + "</span>" +
                       '<span class="ss-row-plus" aria-hidden="true">+</span>';
       row.addEventListener("mouseenter", function () { setCover(cover, p.key); });
@@ -116,7 +119,7 @@
   foot.appendChild(buildNav());
 
   function mount() {
-    if (here !== "index.html") { document.body.appendChild(foot); }  // entrance/home has no footer nav
+    if (here !== "index") { document.body.appendChild(foot); }  // entrance/home has no footer nav
     document.body.appendChild(burger);
     document.body.appendChild(menu);
   }
@@ -124,7 +127,7 @@
 
   /* case-study wordmark (top-left) links back to the entrance/home */
   var topB = document.querySelector(".topbar .b");
-  if (topB) { topB.addEventListener("click", function () { location.href = "index.html"; }); }
+  if (topB) { topB.addEventListener("click", function () { location.href = "/"; }); }
 
   /* ---- 6. Open / close --------------------------------------------------- */
   var isOpen = false;
