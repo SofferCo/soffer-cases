@@ -213,7 +213,7 @@
       normalizeTpl();
     } else if (name === "triangle") { resampleClosed(poly(3, 1)); }
     else if (name === "star") { resampleClosed(poly(5, 0.45)); }
-    else if (name === "arc" && ARC_PATH) { sampleSVGPath(ARC_PATH); }
+    else if (name === "arc" && ARC_PATH) { sampleSVGPath(ARC_PATH); for (let k = 0; k <= RING_SEG; k++) tplZ[k] = -tplZ[k]; }  /* flip vertically — SVG y runs top-down */
     else if (name === "custom" && CUSTOM_PATH) { sampleSVGPath(CUSTOM_PATH); }
     else { // circle (default / fallback)
       for (let k = 0; k <= RING_SEG; k++) { const a = (k / RING_SEG) * Math.PI * 2; tplX[k] = Math.cos(a); tplZ[k] = Math.sin(a); }
