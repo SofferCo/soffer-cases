@@ -20,8 +20,9 @@
         font-family: var(--f, "Overused Grotesk", system-ui, sans-serif); color: var(--ui, #000); }
   #ui .brand { position: absolute; top: var(--m); left: var(--m); pointer-events: auto; }
   #ui .brand .mark { font-size: clamp(20px, 1.5vw, 29px); font-weight: 700; letter-spacing: -.015em; text-transform: lowercase; }
-  /* left-side hero statement — Figma: 46.4px / 63px, weight 459, 1032px wide, top ~497/1080 */
-  #ui .hero { position: absolute; left: var(--m); top: 42%;
+  /* left-side hero statement — bottom-anchored to the same --m margin as the brand/arrow,
+     so the last line sits one margin off the bottom (balanced) instead of overflowing. */
+  #ui .hero { position: absolute; left: var(--m); bottom: var(--m);
               max-width: min(54vw, 1032px); pointer-events: none; }
   #ui .hero .eyebrow { margin: 0 0 28px; font-size: clamp(14px, .95vw, 17px); letter-spacing: .01em; color: var(--ui-dim, #9b958c); }
   #ui .hero p { margin: 0 0 .55em; font-size: clamp(22px, min(2.42vw, 4.7vh), 47px); line-height: 1.36;
