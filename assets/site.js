@@ -41,6 +41,7 @@
 
   /* ---- 2. Manifest (single source of truth) ------------------------------ */
   var PROJECTS = [
+    { key: "home",        title: "Home",                 file: "index.html",               cover: "covers/home.jpg"            },
     { key: "faireez",     title: "Faireez × Flow",       file: "faireez.html",             cover: "covers/faireez-small.png"   },
     { key: "faireez-mkt", title: "Faireez · Marketplace", file: "faireez-marketplace.html", cover: "covers/faireez-small.png"   },
     { key: "trendmind",   title: "TrendMind.ai",         file: "trendmind.html",           cover: "covers/trendmind-small.png" },
@@ -49,6 +50,7 @@
   var here = (location.pathname.split("/").pop() || "index.html").toLowerCase();
   var current = PROJECTS.filter(function (p) { return p.file.toLowerCase() === here; })[0] || PROJECTS[0];
   var currentKey = current.key;
+  if (here === "index.html") { document.documentElement.classList.add("ss-home"); }  // entrance/home page
 
   /* ---- 3. Build one project nav (cover + list) with hover image swap ----- */
   function setCover(cover, key) {
@@ -114,11 +116,15 @@
   foot.appendChild(buildNav());
 
   function mount() {
-    document.body.appendChild(foot);
+    if (here !== "index.html") { document.body.appendChild(foot); }  // entrance/home has no footer nav
     document.body.appendChild(burger);
     document.body.appendChild(menu);
   }
   if (document.body) { mount(); } else { document.addEventListener("DOMContentLoaded", mount); }
+
+  /* case-study wordmark (top-left) links back to the entrance/home */
+  var topB = document.querySelector(".topbar .b");
+  if (topB) { topB.addEventListener("click", function () { location.href = "index.html"; }); }
 
   /* ---- 6. Open / close --------------------------------------------------- */
   var isOpen = false;

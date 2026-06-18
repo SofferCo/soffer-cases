@@ -1,21 +1,543 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0; url=faireez.html">
-  <link rel="canonical" href="faireez.html">
-  <title>Studio Soffer — Case Studies</title>
-  <link rel="icon" href="/favicon.ico">
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Studio Soffer &amp; Co</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="assets/font.css">
+<link rel="stylesheet" href="assets/cursor.css">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+  #c { display: block; width: 100vw; height: 100vh; touch-action: none; }
 
-<style id="brand-cursor">
-  a, a *, button, button *, [role="button"], [role="button"] *, [onclick],
-  .ss-burger, .ss-burger *, .ss-close, .ss-close * {
-    cursor: url("data:image/svg+xml,%3C%3Fxml%20version%3D%271.0%27%20encoding%3D%27UTF-8%27%3F%3E%3Csvg%20data-bbox%3D%271.665%201.426%2037.335%2040.074%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2040%2043%27%20height%3D%2743%27%20width%3D%2740%27%20data-type%3D%27ugc%27%3E%3Cg%3E%3Cpath%20fill%3D%27%23ffffff%27%20d%3D%27M8.22%205.442%2012%2023.5l-3.589-4.486a3.784%203.784%200%201%200-5.754%204.909L5%2026.5l3.9%206.338q.1.161.252.276L14.6%2037.2a1%201%200%200%201%20.4.8v2.5a1%201%200%200%200%201%201h6.139a3%203%200%200%200%202.257-1.025l1.792-2.047a1%201%200%200%201%201.552.059L29.1%2040.3a3%203%200%200%200%202.4%201.2h.5a1%201%200%200%200%201-1v-4.183a1%201%200%200%201%20.183-.576l3.805-5.39A11%2011%200%200%200%2039%2024.01V17.4a2.927%202.927%200%200%200-5.742-.804L33%2017.5l-.203-1.825a3.797%203.797%200%200%200-7.509-.26L25%2017l-.21-2.317a3.5%203.5%200%200%200-6.974.608L18%2017.5%2014.721%203.974a3.333%203.333%200%200%200-6.5%201.468%27%2F%3E%3Cpath%20stroke-linejoin%3D%27round%27%20stroke-linecap%3D%27round%27%20stroke-width%3D%272%27%20stroke%3D%27%231E1E1C%27%20d%3D%27M30.5%2024.5V34M25%2024.5V34m-5-9.5V34m-8-10.5L8.22%205.442a3.333%203.333%200%200%201%202.755-3.977v0a3.333%203.333%200%200%201%203.746%202.509L18%2017.5l-.184-2.21a3.5%203.5%200%200%201%203.488-3.79v0a3.5%203.5%200%200%201%203.485%203.183L25%2017l.288-1.585a3.797%203.797%200%200%201%204.59-3.02v0a3.8%203.8%200%200%201%202.92%203.28L33%2017.5l.258-.904a2.927%202.927%200%200%201%203.389-2.067v0A2.93%202.93%200%200%201%2039%2017.4v6.612c0%202.27-.703%204.485-2.012%206.34l-3.805%205.39a1%201%200%200%200-.183.576V40.5a1%201%200%200%201-1%201h-.5a3%203%200%200%201-2.4-1.2l-1.36-1.813a1%201%200%200%200-1.552-.059l-1.792%202.047A3%203%200%200%201%2022.14%2041.5H16a1%201%200%200%201-1-1V38a1%201%200%200%200-.4-.8l-5.448-4.086a1%201%200%200%201-.252-.276L5%2026.5l-2.343-2.577a3.784%203.784%200%200%201%20.378-5.452v0a3.784%203.784%200%200%201%205.376.543z%27%20fill%3D%27none%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 10 2, pointer !important;
+  /* --- page overlay (brand / nav / status) --- */
+  #ui { position: fixed; inset: 0; z-index: 5; pointer-events: none; --m: clamp(28px, 5vw, 72px);
+        font-family: var(--f, "Overused Grotesk", system-ui, sans-serif); color: var(--ui, #000); }
+  #ui .brand { position: absolute; top: var(--m); left: var(--m); pointer-events: auto; }
+  #ui .brand .mark { font-size: clamp(20px, 1.5vw, 29px); font-weight: 700; letter-spacing: -.015em; text-transform: lowercase; }
+  /* left-side hero statement — Figma: 46.4px / 63px, weight 459, 1032px wide, top ~497/1080 */
+  #ui .hero { position: absolute; left: var(--m); top: 42%;
+              max-width: min(54vw, 1032px); pointer-events: none; }
+  #ui .hero .eyebrow { margin: 0 0 28px; font-size: clamp(14px, .95vw, 17px); letter-spacing: .01em; color: var(--ui-dim, #9b958c); }
+  #ui .hero p { margin: 0 0 .55em; font-size: clamp(22px, min(2.42vw, 4.7vh), 47px); line-height: 1.36;
+                letter-spacing: -.01em; font-weight: 459; color: var(--ui, #000); }
+  #ui .hero p:last-child { margin: 0; }
+  /* arrow button — same mark as the site's top-right ↗ */
+  #ui .arrow { position: fixed; top: var(--m); right: var(--m); pointer-events: auto;
+               display: grid; place-items: center; width: 54px; height: 54px; color: var(--ui, #000);
+               transition: transform .4s cubic-bezier(.22,1,.36,1); }
+  #ui .arrow svg { width: 48px; height: 48px; display: block; transition: transform .4s cubic-bezier(.22,1,.36,1); }
+  #ui .arrow:hover svg { transform: translate(2px, -2px); }
+  #ui .soon { position: absolute; left: var(--m); bottom: var(--m); font-size: 12px; letter-spacing: .16em;
+              color: var(--ui-dim, #9b958c); text-transform: uppercase; }
+
+  /* --- debug control panel --- */
+  #panel {
+    position: fixed; top: 14px; left: 14px; width: 212px; max-height: 92vh; overflow-y: auto;
+    background: rgba(14,14,16,0.82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.12); border-radius: 11px; padding: 11px 13px;
+    font: 11px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; color: #d6d8df;
+    user-select: none; z-index: 10;
   }
+  #panel.hidden { display: none; }
+  #panel h4 { margin: 0 0 9px; font-size: 10px; letter-spacing: .15em; text-transform: uppercase;
+    color: #8a8d96; font-weight: 600; display: flex; justify-content: space-between; }
+  #panel .row { margin: 8px 0; }
+  #panel .lbl { display: flex; justify-content: space-between; margin-bottom: 3px; color: #a9acb5; }
+  #panel .lbl b { color: #fff; font-weight: 500; }
+  #panel input[type=range] { width: 100%; height: 14px; accent-color: #fff; cursor: pointer; margin: 0; }
+  #panel input[type=color] { width: 100%; height: 22px; padding: 0; background: none; cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.15); border-radius: 5px; }
+  #panel select { width: 100%; padding: 5px 6px; font: inherit; color: #d6d8df; background: #1a1a1d;
+    border: 1px solid rgba(255,255,255,0.15); border-radius: 5px; cursor: pointer; }
+  #panel label.chk { display: flex; align-items: center; gap: 7px; cursor: pointer; color: #a9acb5; }
+  #panel label.chk input { accent-color: #fff; cursor: pointer; }
+  #panel button { width: 100%; padding: 6px; margin-top: 2px; font: inherit; color: #d6d8df; cursor: pointer;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; }
+  #panel button:hover { background: rgba(255,255,255,0.16); }
+  #panel .hint { color: #696c74; font-size: 10px; margin-top: 9px; }
+  #panel .sec { margin: 13px 0 5px; padding-top: 9px; border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: #74767d; }
 </style>
 </head>
 <body>
-  <a href="faireez.html">Enter →</a>
+<canvas id="c"></canvas>
+
+<div id="ui">
+  <div class="brand">
+    <div class="mark">studio soffer &amp; co</div>
+  </div>
+  <div class="hero">
+    <div class="eyebrow">/ Find the real problem</div>
+    <p>I design products that make sense - taking the complex, data-heavy work most teams get lost in, and turning it into something people use without a manual.</p>
+    <p>Fifteen years across startups, SaaS and defense - product UX end to end, research, design systems, the build, plus the branding. I find the real problem first, then design the answer.</p>
+  </div>
+</div>
+
+<div id="panel" class="hidden"></div>
+
+<script>
+(() => {
+  "use strict";
+
+  // ---- knobs ----------------------------------------------------------------
+  const CONFIG = {
+    BACKGROUND:  "#F9F9F9",
+    LINE_RGB:    "107,107,107",
+    RING_ALPHA:  0.34,
+    SPOKE_ALPHA: 1.0,
+    RING_WIDTH:  0.5,
+    SPOKE_WIDTH: 0.9,
+
+    RINGS:   25,
+    SPOKES:  16,
+    R_THROAT: 1.0,
+    R_MAX:    20.0,
+    DEPTH:    6.5,
+    FALLOFF:  1.5,
+    SHAPE:   "squircle", // circle | squircle | triangle | star | custom (shape.svg)
+
+    FLOW_SPEED: 0.13,
+    FLOW_DIR:   -1,      // -1 = fly into the tunnel, +1 = suck inward
+    SWIRL:      0.05,
+
+    THUMBS_ON:   true,   // one image at the cursor that swaps as you move
+    THUMB_SIZE:  600,    // px (longest side of the image)
+    SWAP_DIST:   200,    // px of cursor travel between image swaps (higher = slower)
+    RANDOMNESS:  1.0,    // 0 = cycle images in order · 1 = fully random
+
+    EYE_X: 0, EYE_Y: 10.0, EYE_Z: -6.0,
+    TARGET_X: 0, TARGET_Y: -3.2, TARGET_Z: 0.0,
+    FOCAL: 1.7,
+    V_OFFSET: 0.0,
+
+    MOUSE_STEER: 2.2,    // how strongly the cursor curves the tunnel
+    AUTO_DRIFT:  0.7     // ambient sideways drift, even hands-off
+  };
+  // ---------------------------------------------------------------------------
+
+  // factory defaults + persistence: every panel change is saved and restored on reload
+  const DEFAULTS = Object.assign({}, CONFIG);
+  const LS_KEY = "soffer.tunnel.v2";
+  try { const saved = JSON.parse(localStorage.getItem(LS_KEY) || "{}"); for (const k in saved) if (k in CONFIG) CONFIG[k] = saved[k]; } catch (e) {}
+  function saveConfig() { try { localStorage.setItem(LS_KEY, JSON.stringify(CONFIG)); } catch (e) {} }
+
+  const canvas = document.getElementById("c");
+  const ctx = canvas.getContext("2d", { alpha: false });
+
+  let W = 0, H = 0, cx = 0, cy = 0, focal = 800, DPR = 1;
+  function resize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width  = Math.round(W * DPR);
+    canvas.height = Math.round(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    cx = W * 0.5; cy = H * 0.5;
+    focal = Math.min(W, H) * CONFIG.FOCAL;
+  }
+  window.addEventListener("resize", resize);
+  resize();
+
+  function profileY(r) { return -CONFIG.DEPTH * Math.exp(-r / CONFIG.FALLOFF); }
+
+  // ---- cross-section template (circle by default, or any SVG shape) ----------
+  const RING_SEG = 180;
+  const tplX = new Float32Array(RING_SEG + 1);
+  const tplZ = new Float32Array(RING_SEG + 1);
+  let CUSTOM_PATH = null;
+
+  function normalizeTpl() {
+    let minx = 1e9, maxx = -1e9, minz = 1e9, maxz = -1e9;
+    for (let k = 0; k <= RING_SEG; k++) {
+      if (tplX[k] < minx) minx = tplX[k]; if (tplX[k] > maxx) maxx = tplX[k];
+      if (tplZ[k] < minz) minz = tplZ[k]; if (tplZ[k] > maxz) maxz = tplZ[k];
+    }
+    const mx = (minx + maxx) / 2, mz = (minz + maxz) / 2;
+    let maxR = 1e-6;
+    for (let k = 0; k <= RING_SEG; k++) {
+      tplX[k] -= mx; tplZ[k] -= mz;
+      const d = Math.hypot(tplX[k], tplZ[k]); if (d > maxR) maxR = d;
+    }
+    for (let k = 0; k <= RING_SEG; k++) { tplX[k] /= maxR; tplZ[k] /= maxR; }
+  }
+  function resampleClosed(verts) {
+    const segs = []; let total = 0;
+    for (let i = 0; i < verts.length; i++) {
+      const a = verts[i], b = verts[(i + 1) % verts.length];
+      const d = Math.hypot(b[0] - a[0], b[1] - a[1]); segs.push(d); total += d;
+    }
+    for (let k = 0; k <= RING_SEG; k++) {
+      let dist = (k / RING_SEG) * total, i = 0;
+      while (i < segs.length - 1 && dist > segs[i]) { dist -= segs[i]; i++; }
+      const a = verts[i], b = verts[(i + 1) % verts.length];
+      const f = segs[i] > 0 ? dist / segs[i] : 0;
+      tplX[k] = a[0] + (b[0] - a[0]) * f; tplZ[k] = a[1] + (b[1] - a[1]) * f;
+    }
+    normalizeTpl();
+  }
+  function poly(n, inner) {
+    const v = [];
+    for (let i = 0; i < n; i++) {
+      const a = -Math.PI / 2 + (i / n) * Math.PI * 2;
+      v.push([Math.cos(a), Math.sin(a)]);
+      if (inner < 1) { const a2 = a + Math.PI / n; v.push([Math.cos(a2) * inner, Math.sin(a2) * inner]); }
+    }
+    return v;
+  }
+  function sampleSVGPath(d) {
+    const ns = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(ns, "svg");
+    const path = document.createElementNS(ns, "path");
+    path.setAttribute("d", d); svg.appendChild(path);
+    svg.setAttribute("style", "position:absolute;left:-9999px;width:10px;height:10px");
+    document.body.appendChild(svg);
+    const L = path.getTotalLength();
+    for (let k = 0; k <= RING_SEG; k++) { const p = path.getPointAtLength((k / RING_SEG) * L); tplX[k] = p.x; tplZ[k] = p.y; }
+    document.body.removeChild(svg);
+    normalizeTpl();
+  }
+  function buildTemplate(name) {
+    if (name === "squircle") {
+      for (let k = 0; k <= RING_SEG; k++) {
+        const a = (k / RING_SEG) * Math.PI * 2, c = Math.cos(a), s = Math.sin(a);
+        tplX[k] = Math.sign(c) * Math.pow(Math.abs(c), 0.5);
+        tplZ[k] = Math.sign(s) * Math.pow(Math.abs(s), 0.5);
+      }
+      normalizeTpl();
+    } else if (name === "triangle") { resampleClosed(poly(3, 1)); }
+    else if (name === "star") { resampleClosed(poly(5, 0.45)); }
+    else if (name === "custom" && CUSTOM_PATH) { sampleSVGPath(CUSTOM_PATH); }
+    else { // circle (default / fallback)
+      for (let k = 0; k <= RING_SEG; k++) { const a = (k / RING_SEG) * Math.PI * 2; tplX[k] = Math.cos(a); tplZ[k] = Math.sin(a); }
+    }
+  }
+
+  // load an optional custom SVG shape (item 8) — drop any single-path shape.svg next to this file
+  fetch("assets/shape.svg").then(r => r.ok ? r.text() : Promise.reject()).then(txt => {
+    const m = txt.match(/<path[^>]*\sd="([^"]+)"/i);
+    if (m) { CUSTOM_PATH = m[1]; if (CONFIG.SHAPE === "custom") { buildTemplate("custom"); rebuildSpokes(); } }
+  }).catch(() => {});
+
+  // ---- spokes (rebuilt when shape / counts / geometry change) ---------------
+  const SPOKE_SEG = 90;
+  let spokes = [];
+  function rebuildSpokes() {
+    spokes = [];
+    for (let j = 0; j < CONFIG.SPOKES; j++) {
+      const idx = Math.round((j / CONFIG.SPOKES) * RING_SEG) % RING_SEG;
+      const dx = tplX[idx], dz = tplZ[idx];
+      const pts = [];
+      for (let k = 0; k <= SPOKE_SEG; k++) {
+        const r = CONFIG.R_MAX * Math.pow(CONFIG.R_THROAT / CONFIG.R_MAX, k / SPOKE_SEG);
+        pts.push(dx * r, profileY(r), dz * r);
+      }
+      spokes.push(pts);
+    }
+  }
+  buildTemplate(CONFIG.SHAPE);
+  rebuildSpokes();
+
+  // ---- thumbnails (loaded from /thumbnails) — ONE image at the cursor, swapping (no trail)
+  let thumbImgs = [];
+  let curImg = null, curIdx = -1, mX = 0, mY = 0, moveAcc = 0, lastMove = -1, lastSwap = 0;
+  const SWAP_MIN_MS = 150; // never swap faster than this, even on quick flicks
+  // The thumbnail is a real DOM <img> overlay (NOT painted onto the canvas) so animated
+  // GIFs actually animate — ctx.drawImage() of an off-DOM GIF freezes on the first frame.
+  // z-index 2 keeps it above the canvas (#c) but below the hero text (#ui, z 5), matching
+  // the old canvas stacking; pointer-events:none so it never interferes with steering.
+  const thumbEl = document.createElement("img");
+  thumbEl.id = "thumb"; thumbEl.alt = ""; thumbEl.setAttribute("aria-hidden", "true");
+  thumbEl.style.cssText = "position:fixed;z-index:2;display:none;pointer-events:none;width:auto;height:auto;object-fit:contain;";
+  document.body.appendChild(thumbEl);
+  function pickImage() {
+    const n = thumbImgs.length;
+    if (n <= 1) return 0;
+    if (Math.random() < CONFIG.RANDOMNESS) { let i; do { i = (Math.random() * n) | 0; } while (i === curIdx); return i; } // random, no repeat
+    return (curIdx + 1) % n;                                                                                              // sequential
+  }
+  function onMove(x, y) {
+    if (!CONFIG.THUMBS_ON || !thumbImgs.length) return;
+    const t = performance.now();
+    if (lastMove >= 0) moveAcc += Math.hypot(x - mX, y - mY);
+    mX = x; mY = y; lastMove = t;
+    if (curIdx < 0 || (moveAcc >= CONFIG.SWAP_DIST && t - lastSwap >= SWAP_MIN_MS)) {
+      curIdx = pickImage(); curImg = thumbImgs[curIdx]; moveAcc = 0; lastSwap = t;
+    }
+  }
+  function makePlaceholder(label, n) {
+    const cv = document.createElement("canvas"); cv.width = 300; cv.height = 225;
+    const c = cv.getContext("2d");
+    c.fillStyle = "#0e0e10"; c.fillRect(0, 0, 300, 225);
+    c.strokeStyle = "#2c2c30"; c.lineWidth = 2; c.strokeRect(3, 3, 294, 219);
+    c.fillStyle = "#fff"; c.textAlign = "center"; c.font = "600 64px Helvetica, Arial"; c.fillText(String(n), 150, 122);
+    c.fillStyle = "#6a6a70"; c.font = "14px Helvetica, Arial"; c.fillText(label, 150, 172);
+    return cv;
+  }
+  function placeholders() {
+    return [makePlaceholder("01", 1), makePlaceholder("02", 2), makePlaceholder("03", 3)];
+  }
+  // Auto-detect images: load thumbnails/1.(png|jpg|jpeg|webp), then 2, 3 … in order until a
+  // number is missing. No manifest to hand-edit; works over http and file://.
+  function loadThumbs() {
+    const exts = ["gif", "jpg", "jpeg", "png", "webp"];  // gif first → an animated 1.gif wins over 1.jpg
+    const found = [];
+    function step(n, ei) {
+      if (ei >= exts.length) { thumbImgs = found.length ? found.slice() : placeholders(); return; }
+      const im = new Image();
+      im.onload = () => { found.push(im); thumbImgs = found.slice(); step(n + 1, 0); };
+      im.onerror = () => step(n, ei + 1);
+      im.src = "thumbnails/" + n + "." + exts[ei];
+    }
+    step(1, 0);
+  }
+  loadThumbs();
+
+  // pointer steering
+  const tgt = { x: 0, y: 0 }, cur = { x: 0, y: 0 };
+
+  // ---- camera ---------------------------------------------------------------
+  let cYaw = 1, sYaw = 0, vOff = 0;
+  const eye = { x: 0, y: 0, z: 0 };
+  const rgt = { x: 1, y: 0, z: 0 }, upv = { x: 0, y: 1, z: 0 }, fwd = { x: 0, y: 0, z: 1 };
+  function setupCamera() {
+    let fx = CONFIG.TARGET_X - eye.x, fy = CONFIG.TARGET_Y - eye.y, fz = CONFIG.TARGET_Z - eye.z;
+    const fl = Math.hypot(fx, fy, fz); fx /= fl; fy /= fl; fz /= fl;
+    fwd.x = fx; fwd.y = fy; fwd.z = fz;
+    let rx = fz, ry = 0, rz = -fx;
+    const rl = Math.hypot(rx, ry, rz); rx /= rl; ry /= rl; rz /= rl;
+    rgt.x = rx; rgt.y = ry; rgt.z = rz;
+    upv.x = fy * rz - fz * ry; upv.y = fz * rx - fx * rz; upv.z = fx * ry - fy * rx;
+  }
+  // depth weight for steering: 0 at the rim (anchored), ~1 at the throat (swings most)
+  function shape(r) { const t = 1 - r / CONFIG.R_MAX; return t > 0 ? t * t : 0; }
+  function project(x, y, z, ox, oz) {
+    const xr = x * cYaw + z * sYaw + (ox || 0);
+    const zr = -x * sYaw + z * cYaw + (oz || 0);
+    const dx = xr - eye.x, dy = y - eye.y, dz = zr - eye.z;
+    const camz = dx * fwd.x + dy * fwd.y + dz * fwd.z;
+    if (camz <= 0.05) return null;
+    const camx = dx * rgt.x + dy * rgt.y + dz * rgt.z;
+    const camy = dx * upv.x + dy * upv.y + dz * upv.z;
+    const s = focal / camz;
+    return [cx + camx * s, cy + vOff - camy * s, camz];
+  }
+  function smoothstep(e0, e1, x) { let t = (x - e0) / (e1 - e0); t = t < 0 ? 0 : t > 1 ? 1 : t; return t * t * (3 - 2 * t); }
+
+  let bendX = 0, bendZ = 0;
+  let last = 0, swirl = 0, flowT = 0, driftT = 0;
+  function frame(now) {
+    const dt = last ? Math.min(0.05, (now - last) / 1000) : 0.016;
+    last = now;
+
+    focal = Math.min(W, H) * CONFIG.FOCAL;
+    swirl += CONFIG.SWIRL * dt;
+    flowT += CONFIG.FLOW_SPEED * dt;
+    driftT += dt;
+    cur.x += (tgt.x - cur.x) * Math.min(1, dt * 3);
+    cur.y += (tgt.y - cur.y) * Math.min(1, dt * 3);
+
+    const swayX = Math.sin(driftT * 0.31) * 0.6 + Math.sin(driftT * 0.19 + 1.7) * 0.4;
+    const swayZ = Math.sin(driftT * 0.24 + 2.3) * 0.6 + Math.sin(driftT * 0.12 + 0.4) * 0.4;
+    bendX = cur.x * CONFIG.MOUSE_STEER + swayX * CONFIG.AUTO_DRIFT;
+    bendZ = -cur.y * CONFIG.MOUSE_STEER + swayZ * CONFIG.AUTO_DRIFT;
+
+    cYaw = Math.cos(swirl); sYaw = Math.sin(swirl);
+    vOff = H * CONFIG.V_OFFSET;
+    eye.x = CONFIG.EYE_X; eye.y = CONFIG.EYE_Y; eye.z = CONFIG.EYE_Z;
+    setupCamera();
+
+    ctx.fillStyle = CONFIG.BACKGROUND;
+    ctx.fillRect(0, 0, W, H);
+    ctx.lineJoin = "round"; ctx.lineCap = "round";
+
+    const lnBase = Math.log(CONFIG.R_THROAT / CONFIG.R_MAX);
+
+    // radial spokes — fade into the hole via a per-spoke gradient; curved by steering
+    ctx.lineWidth = CONFIG.SPOKE_WIDTH;
+    for (let j = 0; j < spokes.length; j++) {
+      const pts = spokes[j], li = pts.length - 3;
+      const shO = shape(Math.hypot(pts[0], pts[2]));
+      const shI = shape(Math.hypot(pts[li], pts[li + 2]));
+      const pOut = project(pts[0], pts[1], pts[2], bendX * shO, bendZ * shO);
+      const pIn = project(pts[li], pts[li + 1], pts[li + 2], bendX * shI, bendZ * shI);
+      if (!pOut || !pIn) continue;
+      const g = ctx.createLinearGradient(pOut[0], pOut[1], pIn[0], pIn[1]);
+      g.addColorStop(0.0, "rgba(" + CONFIG.LINE_RGB + "," + CONFIG.SPOKE_ALPHA + ")");
+      g.addColorStop(0.7, "rgba(" + CONFIG.LINE_RGB + "," + CONFIG.SPOKE_ALPHA + ")");
+      g.addColorStop(1.0, "rgba(" + CONFIG.LINE_RGB + ",0)");
+      ctx.strokeStyle = g; ctx.globalAlpha = 1;
+      ctx.beginPath();
+      let started = false;
+      for (let k = 0; k < pts.length; k += 3) {
+        const sh = shape(Math.hypot(pts[k], pts[k + 2]));
+        const p = project(pts[k], pts[k + 1], pts[k + 2], bendX * sh, bendZ * sh);
+        if (!p) { started = false; continue; }
+        if (!started) { ctx.moveTo(p[0], p[1]); started = true; } else ctx.lineTo(p[0], p[1]);
+      }
+      ctx.stroke();
+    }
+
+    // rings — flow forever (geometric spacing => seamless loop), curved by steering
+    ctx.strokeStyle = "rgb(" + CONFIG.LINE_RGB + ")";
+    ctx.lineWidth = CONFIG.RING_WIDTH;
+    for (let i = 0; i < CONFIG.RINGS; i++) {
+      const phase = ((i / CONFIG.RINGS + CONFIG.FLOW_DIR * flowT) % 1 + 1) % 1;
+      const r = CONFIG.R_MAX * Math.exp(lnBase * phase);
+      const y = profileY(r);
+      const a = CONFIG.RING_ALPHA * smoothstep(0, 0.10, phase) * (1 - smoothstep(0.86, 1, phase));
+      if (a < 0.01) continue;
+      const sh = shape(r), ox = bendX * sh, oz = bendZ * sh;
+      ctx.globalAlpha = a;
+      ctx.beginPath();
+      let started = false;
+      for (let k = 0; k <= RING_SEG; k++) {
+        const p = project(tplX[k] * r, y, tplZ[k] * r, ox, oz);
+        if (!p) { started = false; continue; }
+        if (!started) { ctx.moveTo(p[0], p[1]); started = true; } else ctx.lineTo(p[0], p[1]);
+      }
+      ctx.stroke();
+    }
+
+    // one image pinned bottom-right (72px frame); swaps when the mouse moves.
+    // Rendered via the DOM <img> overlay (thumbEl) so animated GIFs animate; CSS
+    // max-width/height + auto sizing reproduces the old fit-within-S-square math.
+    if (CONFIG.THUMBS_ON && thumbImgs.length) {
+      if (!curImg) { curIdx = 0; curImg = thumbImgs[0]; }
+      if (curImg.src && thumbEl.src !== curImg.src) thumbEl.src = curImg.src;  // guard: don't restart the GIF every frame
+      const S = Math.min(CONFIG.THUMB_SIZE, H * 0.66, W * 0.42);  // never overgrow on small viewports
+      const M = Math.max(28, Math.min(72, W * 0.05));             // match the CSS frame
+      thumbEl.style.maxWidth  = S + "px";
+      thumbEl.style.maxHeight = S + "px";
+      thumbEl.style.right  = M + "px";
+      thumbEl.style.bottom = M + "px";
+      if (thumbEl.style.display !== "block") thumbEl.style.display = "block";
+    } else if (thumbEl.style.display !== "none") {
+      thumbEl.style.display = "none";
+    }
+
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  // ---- debug control panel --------------------------------------------------
+  const panel = document.getElementById("panel");
+  const uiEl = document.getElementById("ui");
+  function applyTheme() {  // overlay text auto-contrasts with the background
+    const h = CONFIG.BACKGROUND.replace("#", "");
+    const r = parseInt(h.slice(0, 2), 16) || 0, g = parseInt(h.slice(2, 4), 16) || 0, b = parseInt(h.slice(4, 6), 16) || 0;
+    const light = (0.299 * r + 0.587 * g + 0.114 * b) > 150;
+    uiEl.style.setProperty("--ui", light ? "#000000" : "#f4f4f5");      // Figma spec: #000 on light
+    uiEl.style.setProperty("--ui-dim", light ? "#9b958c" : "#86868c");  // site --mute
+  }
+  window.addEventListener("pointermove", (e) => {
+    if (panel.contains(e.target)) return;   // don't steer while using the panel
+    tgt.x = (e.clientX / W) * 2 - 1;
+    tgt.y = (e.clientY / H) * 2 - 1;
+    onMove(e.clientX, e.clientY);
+  });
+  const SLIDERS = [
+    { head: "Motion" },
+    { k: "FLOW_SPEED",  label: "Flow speed",        min: 0,    max: 0.4, step: 0.005 },
+    { k: "SWIRL",       label: "Swirl",             min: -0.4, max: 0.4, step: 0.005 },
+    { k: "MOUSE_STEER", label: "Mouse steer",       min: 0,    max: 6,   step: 0.1 },
+    { k: "AUTO_DRIFT",  label: "Auto drift",        min: 0,    max: 3,   step: 0.05 },
+
+    { head: "Images" },
+    { k: "THUMBS_ON",   label: "Show images",       type: "check" },
+    { k: "RANDOMNESS",  label: "Randomness",        min: 0,    max: 1,   step: 0.05 },
+    { k: "THUMB_SIZE",  label: "Image size",        min: 60,   max: 900, step: 5 },
+    { k: "SWAP_DIST",   label: "Swap every px",     min: 30,   max: 360, step: 5 },
+
+    { head: "View" },
+    { k: "FOCAL",       label: "Zoom",              min: 0.5,  max: 3,   step: 0.01 },
+
+    { head: "Tunnel" },
+    { k: "RINGS",       label: "Rings",             min: 8,    max: 80,  step: 1 },
+    { k: "RING_ALPHA",  label: "Ring brightness",   min: 0,    max: 1,   step: 0.01 },
+    { k: "RING_WIDTH",  label: "Ring width",        min: 0.3,  max: 5,   step: 0.1 },
+    { k: "SPOKES",      label: "Radial lines",      min: 3,    max: 96,  step: 1,   rebuild: true },
+    { k: "SPOKE_ALPHA", label: "Radial brightness", min: 0,    max: 1,   step: 0.01 },
+    { k: "SPOKE_WIDTH", label: "Radial width",      min: 0.3,  max: 5,   step: 0.1 },
+    { k: "DEPTH",       label: "Depth",             min: 1,    max: 14,  step: 0.1, rebuild: true },
+    { k: "FALLOFF",     label: "Throat width",      min: 0.5,  max: 8,   step: 0.1, rebuild: true },
+    { k: "R_THROAT",    label: "Hole size",         min: 0.1,  max: 4,   step: 0.05, rebuild: true },
+    { k: "R_MAX",       label: "Outer radius",      min: 5,    max: 40,  step: 0.5, rebuild: true },
+    { k: "SHAPE",       label: "Tunnel shape",      type: "select", options: [["circle","Circle"],["squircle","Squircle"],["triangle","Triangle"],["star","Star"],["custom","Custom SVG"]] }
+  ];
+  const fmt = (v, step) => step >= 1 ? String(v | 0) : Number(v).toFixed(step < 0.01 ? 3 : 2);
+  const rgbToHex = (s) => "#" + s.split(",").map(n => (+n).toString(16).padStart(2, "0")).join("");
+  const hexToRgb = (h) => { const n = parseInt(h.slice(1), 16); return ((n >> 16) & 255) + "," + ((n >> 8) & 255) + "," + (n & 255); };
+
+  let html = '<h4><span>Controls</span><span style="opacity:.55">H×3 to toggle</span></h4>';
+  for (const s of SLIDERS) {
+    if (s.head) { html += '<div class="sec">' + s.head + '</div>'; continue; }
+    if (s.type === "check") {
+      html += '<div class="row"><label class="chk"><input type="checkbox" id="x_' + s.k + '"><span>' + s.label + '</span></label></div>';
+    } else if (s.type === "select") {
+      html += '<div class="row"><div class="lbl"><span>' + s.label + '</span></div><select id="x_' + s.k + '">'
+            + s.options.map((o) => '<option value="' + o[0] + '">' + o[1] + '</option>').join('') + '</select></div>';
+    } else {
+      html += '<div class="row"><div class="lbl"><span>' + s.label + '</span><b id="v_' + s.k + '"></b></div>'
+            + '<input type="range" id="s_' + s.k + '" min="' + s.min + '" max="' + s.max + '" step="' + s.step + '"></div>';
+    }
+  }
+  html += '<div class="sec">Appearance</div>'
+        + '<div class="row"><div class="lbl"><span>Line color</span></div><input type="color" id="c_line"></div>'
+        + '<div class="row"><div class="lbl"><span>Background</span></div><input type="color" id="c_bg"></div>'
+        + '<div class="row"><label class="chk"><input type="checkbox" id="c_rev"><span>Reverse flow (suck in)</span></label></div>'
+        + '<div class="row"><button id="c_reset">Reset</button></div>'
+        + '<div class="hint">drag a slider &middot; H toggles panel</div>';
+  panel.innerHTML = html;
+
+  function syncUI() {
+    for (const s of SLIDERS) {
+      if (!s.k) continue;
+      if (s.type === "check") document.getElementById("x_" + s.k).checked = !!CONFIG[s.k];
+      else if (s.type === "select") document.getElementById("x_" + s.k).value = CONFIG[s.k];
+      else { document.getElementById("s_" + s.k).value = CONFIG[s.k]; document.getElementById("v_" + s.k).textContent = fmt(CONFIG[s.k], s.step); }
+    }
+    document.getElementById("c_line").value = rgbToHex(CONFIG.LINE_RGB);
+    document.getElementById("c_bg").value = CONFIG.BACKGROUND;
+    document.getElementById("c_rev").checked = CONFIG.FLOW_DIR > 0;
+    applyTheme();
+  }
+  for (const s of SLIDERS) {
+    if (!s.k) continue;
+    if (s.type === "check") {
+      document.getElementById("x_" + s.k).addEventListener("change", (e) => { CONFIG[s.k] = e.target.checked; saveConfig(); });
+    } else if (s.type === "select") {
+      document.getElementById("x_" + s.k).addEventListener("change", (e) => { CONFIG[s.k] = e.target.value; if (s.k === "SHAPE") { buildTemplate(CONFIG.SHAPE); rebuildSpokes(); } saveConfig(); });
+    } else {
+      const inp = document.getElementById("s_" + s.k);
+      inp.addEventListener("input", () => {
+        CONFIG[s.k] = s.step >= 1 ? parseInt(inp.value, 10) : parseFloat(inp.value);
+        document.getElementById("v_" + s.k).textContent = fmt(CONFIG[s.k], s.step);
+        if (s.rebuild) rebuildSpokes();
+        saveConfig();
+      });
+    }
+  }
+  document.getElementById("c_line").addEventListener("input", (e) => { CONFIG.LINE_RGB = hexToRgb(e.target.value); saveConfig(); });
+  document.getElementById("c_bg").addEventListener("input", (e) => { CONFIG.BACKGROUND = e.target.value; applyTheme(); saveConfig(); });
+  document.getElementById("c_rev").addEventListener("change", (e) => { CONFIG.FLOW_DIR = e.target.checked ? 1 : -1; saveConfig(); });
+  document.getElementById("c_reset").addEventListener("click", () => { localStorage.removeItem(LS_KEY); Object.assign(CONFIG, DEFAULTS); buildTemplate(CONFIG.SHAPE); rebuildSpokes(); syncUI(); });
+  let hTaps = [];  // controls panel is hidden; reveal/toggle with three quick H presses
+  window.addEventListener("keydown", (e) => {
+    if (e.key !== "h" && e.key !== "H") return;
+    const t = performance.now();
+    hTaps = hTaps.filter((x) => t - x < 700);
+    hTaps.push(t);
+    if (hTaps.length >= 3) { panel.classList.toggle("hidden"); hTaps = []; }
+  });
+  syncUI();
+})();
+</script>
+<script src="assets/site.js"></script>
 </body>
 </html>

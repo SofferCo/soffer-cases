@@ -18,29 +18,34 @@
 /* reserve the scrollbar gutter always, so the fixed button lands in the SAME
    spot whether the page scrolls (scrollbar shown) or the overlay is open
    (overflow hidden) — kills the horizontal shift between the arrow and the × */
-html { scrollbar-gutter: stable; }
+html { scrollbar-gutter: stable; --ss-frame: clamp(28px, 5vw, 72px); }
+html.ss-home { scrollbar-gutter: auto; }  /* entrance: full-screen canvas, no scroll gutter */
 
-/* ---- Menu button (fixed, top-right) ---------------------- */
+/* ---- Menu button = the home's ↗, on the 72px frame, on every page -------- */
 .ss-burger {
-  position: fixed; top: 14px; right: 20px; z-index: 2147483600;
+  position: fixed; top: var(--ss-frame); right: var(--ss-frame); z-index: 2147483600;
   display: grid; place-items: center;
-  width: 52px; height: 52px; box-sizing: border-box; color: var(--ss-ink);
+  width: 54px; height: 54px; box-sizing: border-box; color: var(--ss-ink);
   background: none; border: 0; cursor: pointer;
   transition: opacity .4s ease, transform .4s cubic-bezier(.22,1,.36,1);
 }
 .ss-burger:active { transform: scale(.92); }
 .ss-burger svg {
-  width: 46px; height: 46px; display: block;
+  width: 48px; height: 48px; display: block;
   transition: transform .4s cubic-bezier(.22,1,.36,1);
 }
+.ss-burger .ss-ic-arrow { stroke-width: 2.5; }
 .ss-burger:hover .ss-ic-arrow { transform: translate(2px, -2px); }
 /* when the overlay is open, the same fixed button becomes the close (×) — same spot & size */
 .ss-burger .ss-ic-close { display: none; }
 html.ss-nav-open .ss-burger .ss-ic-arrow { display: none; }
 html.ss-nav-open .ss-burger .ss-ic-close { display: block; }
 
-/* give the case-study top bar room so its right-aligned meta clears the button */
-body .topbar { padding-right: 78px; }
+/* case-study top bar = the same header as the home: big lowercase wordmark left, ↗ right */
+body .topbar { padding: var(--ss-frame) var(--ss-frame) 30px; }
+body .topbar .b { text-transform: lowercase; font-weight: 700; letter-spacing: -.015em;
+  font-size: clamp(20px, 1.5vw, 29px); line-height: 1; cursor: pointer; }
+body .topbar .c { display: none; }
 
 /* hide the export build-note footer line */
 body .foot { display: none; }
@@ -124,7 +129,7 @@ body .credit a { white-space: nowrap; }
   flex: none; display: flex; align-items: center; justify-content: space-between;
   padding-bottom: clamp(20px, 4vh, 46px);
 }
-.ss-wordmark { font-weight: 600; font-size: 15px; letter-spacing: -.01em; color: var(--ss-ink); }
+.ss-wordmark { font-weight: 700; font-size: 15px; letter-spacing: -.015em; text-transform: lowercase; color: var(--ss-ink); }
 .ss-close {
   font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--ss-mute);
   background: none; border: 0; cursor: pointer; padding: 8px 2px; transition: color .2s ease;
