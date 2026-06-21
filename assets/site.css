@@ -156,6 +156,10 @@ body .credit a { white-space: nowrap; }
   .ss-row-title { font-size: clamp(30px, 8.5vw, 52px); }
   .ss-row:hover .ss-row-title { transform: translateX(8px); }
   body .topbar { padding-right: 64px; }
+  /* balance the arrow against the smaller mobile wordmark: shrink the icon and set
+     the button height to the wordmark's line so the two center on the same row */
+  .ss-burger { width: 40px; height: 24px; }
+  .ss-burger svg { width: 30px; height: 30px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .ss-menu, .ss-cover-img, .ss-row-title, .ss-row-plus, .ss-burger, .ss-burger span { transition: none !important; }

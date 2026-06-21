@@ -306,6 +306,15 @@
   }
   loadThumbs();
 
+  // Touch devices have no cursor to drive the swap, and a finger-drag isn't
+  // discoverable — so on no-hover screens auto-advance the pinned image on a timer.
+  if (window.matchMedia && window.matchMedia("(hover: none)").matches) {
+    setInterval(function () {
+      if (!CONFIG.THUMBS_ON || thumbImgs.length <= 1) return;
+      curIdx = pickImage(); curImg = thumbImgs[curIdx];
+    }, 2500);
+  }
+
   // pointer steering
   const tgt = { x: 0, y: 0 }, cur = { x: 0, y: 0 };
 
